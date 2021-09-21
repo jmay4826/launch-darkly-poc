@@ -41,15 +41,20 @@ const Home: NextPage = () => {
     waitForReady();
   }, [client]);
 
-  useEffect(() => {
-    setUserInfo(client?.getUser());
-  }, [client, userIdentity]);
+  
 
   // the flag will be undefined if it's still loading.
   // we could potentially use that to identify a loading state,
   // but the flag may exist with a default value depending on our settings
-  // in _app.tsx
+  // in _app.tsx. If we need to be sure about the loading state,
+  // we can use the client.waitForInitialization method above
   const loading = flagIsUndefined || !clientIsReady;
+
+  // we can get the current user's info from the LD client,
+  // which would be particularly helpful if they are anonymous.
+  useEffect(() => {
+    setUserInfo(client?.getUser());
+  }, [client, userIdentity]);
 
   return (
     <div className={styles.container}>
