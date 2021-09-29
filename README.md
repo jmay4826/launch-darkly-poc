@@ -31,3 +31,6 @@ In terms of product features, Split and Launch Darkly appear to be pretty simila
 
 - Any concerns you have with Launch Darkly other than us looking deeper into pricing?
     - With Launch Darkly, the "ready" event is emitted even if the client is initialized from localStorage, so there's no way to know if a user is getting a cached/bootstrapped value or a live value from the LD server. With Split, they have two separate "ready" events, one for cached values and one for live values. I think this should be easy to work around, but it's something we will have to keep in mind on pages that use flags.
+
+- Any concerns getting LD to work for our legacy apps that are behind on React?
+    - No concerns for legacy apps. They won't be able to use the official React SDK because it depends on React 16, but their existing feature flag implementations should be easy to convert to the Launch Darkly vanilla JS SDK
